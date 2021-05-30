@@ -94,11 +94,145 @@
 ### 4. Route53
 
 1. Route 53란?
-   - AWS에서 제공하는 DNS서비스
+   - AWS에서 제공하는 DNS서비스 (도메인 주소를 구매하여 3가지 백엔드로 연결시켜 주는 것)
+   
+     > EC2 instance
+     >
+     > S3 Vucket
+     >
+     > Load Balancer
 
+2. Route 53 실습
 
+   1) 도메인 등록
 
-### 5. 실습
+   > ![image-20210530230023152](/Users/yw/Library/Application Support/typora-user-images/image-20210530230023152.png)
+   >
+   > 
+
+   2) 도메인 이름 선택
+
+   > ![image-20210530230452975](/Users/yw/Library/Application Support/typora-user-images/image-20210530230452975.png)
+   >
+   > 
+
+   3) 도메인에 대한 연락처 세부 정보 기입
+
+   > ![image-20210530230737411](/Users/yw/Library/Application Support/typora-user-images/image-20210530230737411.png)
+   >
+   > 
+
+   4) 이메일 주소 확인
+
+   > ![image-20210530231002247](/Users/yw/Library/Application Support/typora-user-images/image-20210530231002247.png)
+   >
+   > 
+
+   5) 도메인 등록 완료 - 약 3일정도 소요됨
+
+   > ![image-20210530231144853](/Users/yw/Library/Application Support/typora-user-images/image-20210530231144853.png)
+   >
+   > 
+
+   
+
+### 5. EC2 실습
+
+1. 인스턴스 생성
+
+   > ![image-20210530231809612](/Users/yw/Library/Application Support/typora-user-images/image-20210530231809612.png)
+
+2. Amazon Machine Image (AMI) 선택 - 운영체제 선택 
+
+   > ![image-20210530232153647](/Users/yw/Library/Application Support/typora-user-images/image-20210530232153647.png)
+
+3. 인스턴스 유형 선택
+
+   > ![image-20210530232313495](/Users/yw/Library/Application Support/typora-user-images/image-20210530232313495.png)
+
+4. 인스턴스 세부 정보 구성
+
+   > ![image-20210530232519020](/Users/yw/Library/Application Support/typora-user-images/image-20210530232519020.png)
+
+5. 스토리지 추가
+
+   > ![image-20210530234712084](/Users/yw/Library/Application Support/typora-user-images/image-20210530234712084.png)
+
+6. 태그 추가
+
+   > ![image-20210530234833082](/Users/yw/Library/Application Support/typora-user-images/image-20210530234833082.png)
+
+7. 보안 그룹 구성
+
+   > ![image-20210530235122692](/Users/yw/Library/Application Support/typora-user-images/image-20210530235122692.png)
+
+8. 인스턴스 시작 검토 - 키페어를 생성하고 별도로 보관해야 함
+
+   > ![image-20210530235432111](/Users/yw/Library/Application Support/typora-user-images/image-20210530235432111.png)
+
+9. 인스턴스 연결
+
+   > 1) 인스턴스 연결
+   >
+   > > ![image-20210530235725906](/Users/yw/Library/Application Support/typora-user-images/image-20210530235725906.png)
+   > >
+   > > ![image-20210531000044662](/Users/yw/Library/Application Support/typora-user-images/image-20210531000044662.png)
+   > >
+   > > 
+   >
+   > 2) 커맨드 창 열고 8 번 키페어를 다운로드 받은 위치로 이동
+   >
+   > > ![image-20210531000203523](/Users/yw/Library/Application Support/typora-user-images/image-20210531000203523.png)
+   >
+   > 3) 1)에 명시되어 있는 명령어 실행
+   >
+   > > ![image-20210531000431613](/Users/yw/Library/Application Support/typora-user-images/image-20210531000431613.png)
+   > >
+   > > - chmod 400 awslearner.pem : 퍼미션 변경
+   > > - ssh -i "awslearner.pem" ec2-user@ec2-3-35-176-73.ap-northeast-2.compute.amazonaws.com : 인스턴스에 접속
+   >
+   > 4)  인스턴스에 접속 후 해야할 명령어
+   >
+   > > ![image-20210531000808563](/Users/yw/Library/Application Support/typora-user-images/image-20210531000808563.png)
+   > >
+   > > - sudo su : 루트 유저가 될 수 있음
+   > > - yum update -y : 운영체제를 업데이트 시키며 관련있는 패키지들을 설치해 줌 
+   >
+   > 5) 아파치 설치
+   >
+   > > ![image-20210531001049953](/Users/yw/Library/Application Support/typora-user-images/image-20210531001049953.png)
+   > >
+   > > - yum install httpd -y
+   >
+   > 6) 아파치 실행
+   >
+   > > ![image-20210531001237898](/Users/yw/Library/Application Support/typora-user-images/image-20210531001237898.png)
+   > >
+   > > - service httpd start : 아파치 실행
+   > > - chkconfig httpd on : 인스턴스 실행시 자동으로 아파치 실행 될 수 있도록 설정
+   >
+   > 7) html 생성
+   >
+   > > ![image-20210531001637169](/Users/yw/Library/Application Support/typora-user-images/image-20210531001637169.png)
+   > >
+   > > - cd /var/www/html 경로로 이동
+   > > - vi index.html : index.html 이라는 파일 생성
+   > >
+   > > ![image-20210531001556855](/Users/yw/Library/Application Support/typora-user-images/image-20210531001556855.png)
+   > >
+   > > - index.html 파일의 내용 입력
+   >
+   > 8) 웹서버 접속
+   >
+   > > ![image-20210531002124740](/Users/yw/Library/Application Support/typora-user-images/image-20210531002124740.png)
+   > >
+   > > - aws 콘솔에서 퍼블릭 IP 복사
+   > >
+   > > ![image-20210531002218243](/Users/yw/Library/Application Support/typora-user-images/image-20210531002218243.png)
+   > >
+   > > - 웹 브라우저에서 확인해보면 인스턴스에 올라간 웹 호출 가능
+   >
+   > 
 
 
 
