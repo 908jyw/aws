@@ -151,7 +151,7 @@
    > > ?>
    > > ~~~
    >
-   > 보안 그룹 구성
+   > 보안 그룹 구성 (sg-0b8ac5fbbe31c9cfc)
    >
    > > ![image-20210613225439939](/Users/yw/Library/Application Support/typora-user-images/image-20210613225439939.png)
    >
@@ -162,5 +162,29 @@
 4. EC2 인스턴스 접속
 
    > ![image-20210613231404490](/Users/yw/Library/Application Support/typora-user-images/image-20210613231404490.png)
+
+5. connect.php endpoint 설정
+
+   > ![image-20210614222810030](/Users/yw/Library/Application Support/typora-user-images/image-20210614222810030.png)
    >
    > 
+
+6. EC2 퍼블릭 도메일 실행하면 아래와 같이 됨
+
+   > ![image-20210614224327194](/Users/yw/Library/Application Support/typora-user-images/image-20210614224327194.png)
+
+7. RDS 보안그룹 설정
+
+   >
+   >
+   >![image-20210614224539769](/Users/yw/Library/Application Support/typora-user-images/image-20210614224539769.png)
+   >
+   >인바운드 규칙 편집
+   >
+   >![image-20210614224716689](/Users/yw/Library/Application Support/typora-user-images/image-20210614224716689.png)
+   >
+   >EC2 가 포함된 보안 그룹을 추가
+   >
+   >![image-20210614224835014](/Users/yw/Library/Application Support/typora-user-images/image-20210614224835014.png)
+   >
+   >
