@@ -184,7 +184,7 @@
    >
    > > ![image-20210531000203523](/Users/yw/Library/Application Support/typora-user-images/image-20210531000203523.png)
    >
-   > 3) 1)에 명시되어 있는 명령어 실행
+   > 3) 1)에 명시되어 있는 명령어 실행 (키페어를 가지고 EC2 인스턴스에 접속 가능)
    >
    > > ![image-20210531000431613](/Users/yw/Library/Application Support/typora-user-images/image-20210531000431613.png)
    > >
